@@ -1,0 +1,45 @@
+[gd_scene load_steps=7 format=3 uid="uid://4fuedc64yukd"]
+
+[ext_resource type="Script" path="res://entities/player.gd" id="1"]
+[ext_resource type="AudioStream" uid="uid://cdxea3scjrwhr" path="res://sounds/footstep-01.ogg" id="2_fap2l"]
+[ext_resource type="AudioStream" uid="uid://xhwopdf0spdj" path="res://sounds/footstep-02.ogg" id="3_vb7nx"]
+[ext_resource type="AudioStream" uid="uid://cuqanlvrtp3bm" path="res://sounds/footstep-03.ogg" id="4_lsdls"]
+
+[sub_resource type="BoxShape3D" id="6"]
+size = Vector3(0.9, 1.8, 0.9)
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_vp8h1"]
+streams_count = 3
+stream_0/stream = ExtResource("2_fap2l")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("3_vb7nx")
+stream_1/weight = 1.0
+stream_2/stream = ExtResource("4_lsdls")
+stream_2/weight = 1.0
+
+[node name="Player" type="CharacterBody3D"]
+collision_priority = 100.0
+floor_stop_on_slope = false
+safe_margin = 0.01
+script = ExtResource("1")
+
+[node name="CollisionShape" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("6")
+
+[node name="Body" type="Node3D" parent="."]
+
+[node name="Head" type="Node3D" parent="Body"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7, 0)
+
+[node name="Camera" type="Camera3D" parent="Body/Head"]
+far = 1000.0
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Body/Head/Camera"]
+light_energy = 0.4
+light_specular = 0.0
+shadow_enabled = true
+omni_range = 2.0
+
+[node name="Footstep" type="AudioStreamPlayer3D" parent="."]
+stream = SubResource("AudioStreamRandomizer_vp8h1")

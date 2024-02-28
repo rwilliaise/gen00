@@ -1,0 +1,38 @@
+@baseclass = Angle [
+	// https://github.com/TrenchBroom/TrenchBroom/issues/3827
+	angles(string) : "Pitch Yaw Roll" : "0 0 0"
+]
+
+@baseclass = Tile [
+    pos_x(string) : "Pos x side" : "empty"
+    neg_x(string) : "Neg x side" : "empty"
+    pos_y(string) : "Pos y side" : "empty"
+    neg_y(string) : "Neg y side" : "empty"
+    pos_z(string) : "Pos z side" : "empty"
+    neg_z(string) : "Neg z side" : "empty"
+]
+
+@SolidClass = worldspawn : "World entity" []
+
+@SolidClass = area : "Area" []
+
+@PointClass size(-8 -8 0, 8 8 32) color(0 255 0) = player : "Player spawn" [
+    spawnflags(flags) =
+    [
+        1 : "Disable Light" : 0
+    ]
+]
+
+@SolidClass base(Tile) = gen_start : "Generation Start" [
+    empty(string) : "Empty generation side" : "empty"
+    full(string) : "Full generation side" : "full"
+
+]
+
+@PointClass = gen_connect : "Generation Connection" [
+    a(string) : "Side A" : ""
+    b(string) : "Side B" : ""
+]
+
+@SolidClass base(Tile) = gen_tile : "Generation Tile" [
+]

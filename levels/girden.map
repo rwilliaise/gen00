@@ -1,0 +1,12 @@
+// Game: gen00
+// Format: Standard
+// entity 0
+{
+"classname" "worldspawn"
+"_tb_textures" "textures;textures/metal"
+}
+// entity 1
+{
+"classname" "player"
+"origin" "0 0 16"
+}
